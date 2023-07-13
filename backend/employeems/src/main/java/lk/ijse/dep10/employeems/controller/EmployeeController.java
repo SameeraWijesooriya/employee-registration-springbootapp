@@ -87,7 +87,7 @@ public class EmployeeController {
         try {
             List<EmployeeDTO> employeeDTOList = employeeService.getAllEmployee();
             responseDTO.setCode(VarList.RSP_SUCCESS);
-            responseDTO.setMessage("Success");
+            responseDTO.setMessage("Getting Success");
             responseDTO.setContent(employeeDTOList);
             return new ResponseEntity(responseDTO, HttpStatus.ACCEPTED);
 
@@ -97,6 +97,28 @@ public class EmployeeController {
             responseDTO.setContent(null);
             return new ResponseEntity(responseDTO, HttpStatus.INTERNAL_SERVER_ERROR);
 
+        }
+    }
+    @DeleteMapping("/deleteEmployee/{empID}")
+    public ResponseEntity deleteEmployee(@PathVariable int empID){
+        try {
+            String res = employeeService.deleteEmployee(empID);
+            if (res.equals("C000")) {
+                responseDTO.setCode(VarList.RSP_SUCCESS);
+                responseDTO.setMessage("Delete Success");
+                responseDTO.setContent(null);
+                return new ResponseEntity(responseDTO, HttpStatus.ACCEPTED);
+            } else {
+                responseDTO.setCode(VarList.RSP_NO_DATA_FOUND);
+                responseDTO.setMessage("No Employee Available For this empID");
+                responseDTO.setContent(null);
+                return new ResponseEntity(responseDTO, HttpStatus.BAD_REQUEST);
+            }
+        } catch (Exception e) {
+            responseDTO.setCode(VarList.RSP_ERROR);
+            responseDTO.setMessage(e.getMessage());
+            responseDTO.setContent(e);
+            return new ResponseEntity(responseDTO, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 

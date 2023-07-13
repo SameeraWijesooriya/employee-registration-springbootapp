@@ -46,4 +46,16 @@ public class EmployeeService {
         return modelMapper.map(employeeList,new TypeToken<ArrayList<EmployeeDTO>>(){
         }.getType());
     }
+
+    public String deleteEmployee(int empID){
+        if (employeeRepo.existsById(empID)){
+            employeeRepo.deleteById(empID);
+            return VarList.RSP_SUCCESS;
+        }else {
+            return VarList.RSP_NO_DATA_FOUND;
+        }
+    }
+
+
+
 }
