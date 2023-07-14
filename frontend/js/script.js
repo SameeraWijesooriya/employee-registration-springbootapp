@@ -39,7 +39,7 @@ function updateEmployee(){
         url:"http://localhost:8080/api/v1/employee/updateEmployee",
         async:true,
         data:JSON.stringify({
-            "empId":empID,
+            "empID":empID,
             "empName":name,
             "empAddress":address,
             "empMNumber":number
@@ -81,12 +81,12 @@ function getAllEmployees(){
             if (data.code==="C000"){
                 $('#empTable').empty();
                 for (let emp of data.content){
-                    let empID=emp.empId
+                    let empID=emp.empID
                     let name=emp.empName
                     let address=emp.empAddress
                     let number=emp.empMNumber
 
-                    var row=`<tr><td>${empId}</td><td>${name}</td><td>${address}</td><td>${number}</td></tr>`;
+                    var row=`<tr><td>${empID}</td><td>${name}</td><td>${address}</td><td>${number}</td></tr>`;
                     $('#empTable').append(row);
                 }
             }
