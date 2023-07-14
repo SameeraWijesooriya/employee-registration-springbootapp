@@ -1,0 +1,17 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 10px;
+    background-color: rgb(205, 231, 231);
+}
+#view-port{
+    display: flex;
+    flex-direction: row;
+}
+table{
+    overflow-y: scroll;
+}
